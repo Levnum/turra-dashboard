@@ -7,7 +7,7 @@
 <style>
 .sqs-block-content, .sqs-block, .content-wrapper, .page-wrapper { padding:0 !important; margin:0 !important; max-width:none !important; }
 :root {
-  --turra-green:#016948; --turra-gold:#C49A2E; --turra-grey:#E8EDE8;
+  --turra-green:#016948; --turra-gold:#C49A2E; --turra-grey:#ecece5;
   --green-mid:#6B9E7A; --green-light:#A8C5A0; --ink:#172033; --muted:#6B7668; --line:#D8E4D8; --card:#F7F9F7;
 }
 * { box-sizing: border-box; }
@@ -46,8 +46,6 @@ td { padding:12px 10px; border-bottom:1px solid var(--line); font-size:14px; }
 .bar-track { height:10px; background:#E8EDF3; border-radius:999px; overflow:hidden; }
 .bar-fill { height:100%; border-radius:999px; }
 .donut-wrap { display:flex; gap:22px; align-items:center; }
-.donut { width:140px; height:140px; border-radius:50%; position:relative; flex:0 0 auto; }
-.donut::after { content:""; position:absolute; inset:30px; background:white; border-radius:50%; box-shadow:inset 0 0 0 1px var(--line); }
 .legend { flex:1; display:grid; gap:10px; }
 .legend-item { display:grid; grid-template-columns:12px 1fr auto; align-items:center; gap:9px; font-size:13px; }
 .legend-item span { width:12px; height:12px; border-radius:3px; }
@@ -144,7 +142,12 @@ td { padding:12px 10px; border-bottom:1px solid var(--line); font-size:14px; }
     <div class="card section">
       <div class="section-head"><h3>Site Location</h3><span>Candidate allocation</span></div>
       <div class="donut-wrap">
-        <div class="donut" style="background:conic-gradient(#016948 0deg 228.4deg, #6B9E7A 228.4deg 322.5deg, #A8C5A0 #A8C5A0 already done);"></div>
+        <svg width="140" height="140" viewBox="0 0 140 140" style="flex:0 0 auto;">
+          <circle cx="70" cy="70" r="54" fill="none" stroke="#A8C5A0" stroke-width="22"/>
+          <circle cx="70" cy="70" r="54" fill="none" stroke="#6B9E7A" stroke-width="22" stroke-dasharray="57.2 281.9" stroke-dashoffset="0" transform="rotate(-90 70 70)"/>
+          <circle cx="70" cy="70" r="54" fill="none" stroke="#016948" stroke-width="22" stroke-dasharray="216.5 122.6" stroke-dashoffset="-57.2" transform="rotate(-90 70 70)"/>
+          <circle cx="70" cy="70" r="48" fill="white"/>
+        </svg>
         <div class="legend">
           <div class="legend-item"><span style="background:#016948"></span><div>LNGP</div><strong>61</strong></div>
           <div class="legend-item"><span style="background:#6B9E7A"></span><div>HGCP</div><strong>25</strong></div>
@@ -155,7 +158,11 @@ td { padding:12px 10px; border-bottom:1px solid var(--line); font-size:14px; }
     <div class="card section">
       <div class="section-head"><h3>Nationality Split</h3><span>Candidate profile</span></div>
       <div class="donut-wrap">
-        <div class="donut" style="background:conic-gradient(#016948 0deg 277.5deg, #C49A2E 277.5deg 360deg);"></div>
+        <svg width="140" height="140" viewBox="0 0 140 140" style="flex:0 0 auto;">
+          <circle cx="70" cy="70" r="54" fill="none" stroke="#C49A2E" stroke-width="22"/>
+          <circle cx="70" cy="70" r="54" fill="none" stroke="#016948" stroke-width="22" stroke-dasharray="261.9 77.2" stroke-dashoffset="0" transform="rotate(-90 70 70)"/>
+          <circle cx="70" cy="70" r="48" fill="white"/>
+        </svg>
         <div class="legend">
           <div class="legend-item"><span style="background:#016948"></span><div>NAT</div><strong>74</strong></div>
           <div class="legend-item"><span style="background:#C49A2E"></span><div>Expat</div><strong>22</strong></div>

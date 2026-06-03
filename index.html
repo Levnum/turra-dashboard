@@ -11,8 +11,8 @@
   --green-mid:#6B9E7A; --green-light:#A8C5A0; --ink:#172033; --muted:#6B7668; --line:#D8E4D8; --card:#F7F9F7;
 }
 * { box-sizing: border-box; }
-body { margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--turra-grey); color:var(--ink); }
-.page { max-width:1280px; margin:0 auto; padding:28px; }
+body { margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--turra-grey); color:var(--ink); overflow-x:hidden; }
+.page { max-width:1280px; margin:0 auto; padding:28px; width:100%; overflow-x:hidden; }
 .header { background:var(--turra-green); color:white; border-radius:18px; padding:28px 32px; display:flex; justify-content:space-between; gap:24px; align-items:flex-end; margin-bottom:22px; }
 .brand-small { font-size:13px; letter-spacing:.08em; text-transform:uppercase; opacity:.82; margin-bottom:8px; }
 h1 { margin:0; font-size:30px; line-height:1.15; font-weight:700; color:white; }
@@ -21,7 +21,8 @@ h1 { margin:0; font-size:30px; line-height:1.15; font-weight:700; color:white; }
 .date-box span { display:block; font-size:12px; opacity:.75; margin-bottom:5px; text-transform:uppercase; letter-spacing:.07em; }
 .date-box strong { font-size:16px; color:#FFFFFF; }
 .kpi-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-bottom:18px; }
-.card { background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:0 8px 24px rgba(12,46,101,.06); overflow: hidden; }
+.card { background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:0 8px 24px rgba(12,46,101,.06); position:relative; overflow:hidden; }
+.card.section { overflow-x:auto !important; -webkit-overflow-scrolling:touch; }
 .kpi { padding:18px; }
 .kpi p { margin:0 0 10px; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
 .kpi h2 { margin:0; font-size:34px; line-height:1; color:var(--turra-green); }
@@ -72,7 +73,7 @@ html, body { overflow-x:hidden; }
 /* 2. Allow grid children to shrink below content width */
 .grid-2 > *, .grid-3 > *, .grid-equal > * { min-width:0; }
 /* 3. Wide tables scroll horizontally within their own card */
-.card table { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; min-width:100%; }
+.card.section table { min-width:500px; width:100%; }
 @media print { body { background:white; } .page { max-width:none; padding:12px; } .card, .header { box-shadow:none; } }
 @media (max-width:1000px) { 
   .kpi-grid { grid-template-columns:repeat(2,1fr); } 
@@ -85,12 +86,11 @@ html, body { overflow-x:hidden; }
   .page { padding:12px; }
   .kpi-grid { grid-template-columns:repeat(2,1fr); }
   .section-head { flex-direction:column; gap:4px; }
-  .vbar-grid { overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px; }
+  .vbar-grid { overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px; display:none; }
+  .mob-list { display:block; }
   .check-row { grid-template-columns:1fr 1fr 38px; }
   .section { padding:14px; }
   .kpi { padding:12px; }
-  .mob-list { display:block; }
-  .vbar-grid { display:none; }
 }
 </style>
 </head>

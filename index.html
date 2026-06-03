@@ -61,8 +61,37 @@ td { padding:12px 10px; border-bottom:1px solid var(--line); font-size:14px; }
 .vbar span { color:var(--muted); font-size:11px; }
 .role-table td:last-child, .role-table th:last-child { text-align:right; }
 .footer-note { color:var(--muted); font-size:12px; margin-top:14px; line-height:1.5; }
+.mob-list { display:none; }
+.mob-list-row { display:flex; align-items:center; padding:8px 0; border-bottom:1px solid var(--line); font-size:13px; }
+.mob-list-row span { width:32px; color:var(--muted); }
+.mob-list-row strong { color:var(--turra-green); width:24px; text-align:right; }
+.scroll-mobile { width:100%; }
+.transition-table { min-width:520px; width:100%; }
+/* 1. Prevent horizontal page-level scrolling */
+html, body { overflow-x:hidden; }
+/* 2. Allow grid children to shrink below content width */
+.grid-2 > *, .grid-3 > *, .grid-equal > * { min-width:0; }
+/* 3. Wide tables scroll horizontally within their own card */
+.card table { display:block; overflow-x:auto; -webkit-overflow-scrolling:touch; min-width:380px; }
 @media print { body { background:white; } .page { max-width:none; padding:12px; } .card, .header { box-shadow:none; } }
-@media (max-width:1000px) { .kpi-grid { grid-template-columns:repeat(3,1fr); } .grid-2,.grid-3,.grid-equal { grid-template-columns:1fr; } .header { align-items:flex-start; flex-direction:column; } .date-box { text-align:left; } }
+@media (max-width:1000px) { 
+  .kpi-grid { grid-template-columns:repeat(2,1fr); } 
+  .grid-2, .grid-3, .grid-equal { grid-template-columns:1fr; } 
+  .header { align-items:flex-start; flex-direction:column; } 
+  .date-box { text-align:left; }
+}
+/* 4. Phone-specific adjustments */
+@media (max-width:600px) {
+  .page { padding:12px; }
+  .kpi-grid { grid-template-columns:repeat(2,1fr); }
+  .section-head { flex-direction:column; gap:4px; }
+  .vbar-grid { overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:6px; }
+  .check-row { grid-template-columns:1fr 1fr 38px; }
+  .section { padding:14px; }
+  .kpi { padding:12px; }
+  .mob-list { display:block; }
+  .vbar-grid { display:none; }
+}
 </style>
 </head>
 <body>
@@ -89,15 +118,17 @@ td { padding:12px 10px; border-bottom:1px solid var(--line); font-size:14px; }
   <section class="grid-2">
     <div class="card section">
       <div class="section-head"><h3>Transition Progress by Site</h3><span>Requested vs approved vs contracted</span></div>
-      <table>
-        <thead><tr><th>Site Location</th><th>Requested</th><th>Approved</th><th>Contracted</th><th>Progress</th></tr></thead>
-        <tbody>
-          <tr><td>HGCP</td><td>25</td><td>24</td><td>10</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:40%"></div></div><span>40%</span></div></td></tr>
-          <tr><td>LNGP</td><td>68</td><td>59</td><td>35</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:51%"></div></div><span>51%</span></div></td></tr>
-          <tr><td>LNGP Supply Chain</td><td>11</td><td>10</td><td>0</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:0%"></div></div><span>0%</span></div></td></tr>
-          <tr class="total-row"><td>Total</td><td>104</td><td>93</td><td>45</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:43%"></div></div><span>43%</span></div></td></tr>
-        </tbody>
-      </table>
+      <div class="scroll-mobile">
+        <table class="transition-table">
+          <thead><tr><th>Site Location</th><th>Requested</th><th>Approved</th><th>Contracted</th><th>Progress</th></tr></thead>
+          <tbody>
+            <tr><td>HGCP</td><td>25</td><td>24</td><td>10</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:40%"></div></div><span>40%</span></div></td></tr>
+            <tr><td>LNGP</td><td>68</td><td>59</td><td>35</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:51%"></div></div><span>51%</span></div></td></tr>
+            <tr><td>LNGP Supply Chain</td><td>11</td><td>10</td><td>0</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:0%"></div></div><span>0%</span></div></td></tr>
+            <tr class="total-row"><td>Total</td><td>104</td><td>93</td><td>45</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:43%"></div></div><span>43%</span></div></td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <div class="card section">
       <div class="section-head"><h3>Estimated Mobilisation Timing</h3><span>Candidate count by month</span></div>
@@ -110,6 +141,16 @@ td { padding:12px 10px; border-bottom:1px solid var(--line); font-size:14px; }
         <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:100%"></div></div><strong>36</strong><span>Jun</span></div>
         <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:50%"></div></div><strong>18</strong><span>Jul</span></div>
         <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:2.8%"></div></div><strong>1</strong><span>Aug</span></div>
+      </div>
+      <div class="mob-list">
+        <div class="mob-list-row"><span>Jan</span><div class="bar-track" style="flex:1;margin:0 10px;"><div class="bar-fill" style="width:2.8%;background:#016948;"></div></div><strong>1</strong></div>
+        <div class="mob-list-row"><span>Feb</span><div class="bar-track" style="flex:1;margin:0 10px;"><div class="bar-fill" style="width:8.3%;background:#016948;"></div></div><strong>3</strong></div>
+        <div class="mob-list-row"><span>Mar</span><div class="bar-track" style="flex:1;margin:0 10px;"><div class="bar-fill" style="width:5.6%;background:#016948;"></div></div><strong>2</strong></div>
+        <div class="mob-list-row"><span>Apr</span><div class="bar-track" style="flex:1;margin:0 10px;"><div class="bar-fill" style="width:5.6%;background:#016948;"></div></div><strong>2</strong></div>
+        <div class="mob-list-row"><span>May</span><div class="bar-track" style="flex:1;margin:0 10px;"><div class="bar-fill" style="width:25%;background:#016948;"></div></div><strong>9</strong></div>
+        <div class="mob-list-row"><span>Jun</span><div class="bar-track" style="flex:1;margin:0 10px;"><div class="bar-fill" style="width:100%;background:#016948;"></div></div><strong>36</strong></div>
+        <div class="mob-list-row"><span>Jul</span><div class="bar-track" style="flex:1;margin:0 10px;"><div class="bar-fill" style="width:50%;background:#016948;"></div></div><strong>18</strong></div>
+        <div class="mob-list-row"><span>Aug</span><div class="bar-track" style="flex:1;margin:0 10px;"><div class="bar-fill" style="width:2.8%;background:#016948;"></div></div><strong>1</strong></div>
       </div>
     </div>
   </section>

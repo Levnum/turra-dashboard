@@ -1,262 +1,264 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Turra Recruitment Dashboard</title>
-<style>
-:root {
-  --turra-green:#016948; --turra-gold:#C49A2E; --turra-grey:#ecece5;
-  --green-mid:#4a9b78; --green-light:#8fbeaa; --ink:#172033; --muted:#687386; --line:#E6EAF0; --card:#FFFFFF;
-}
-* { box-sizing: border-box; }
-body { margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--turra-grey); color:var(--ink); }
-.page { max-width:1280px; margin:0 auto; padding:28px; }
-.header { background:var(--turra-green); color:white; border-radius:18px; padding:28px 32px; display:flex; justify-content:space-between; gap:24px; align-items:flex-end; margin-bottom:22px; }
-.brand-small { font-size:13px; letter-spacing:.08em; text-transform:uppercase; opacity:.82; margin-bottom:8px; }
-h1 { margin:0; font-size:30px; line-height:1.15; font-weight:700; }
-.subtitle { margin:8px 0 0; opacity:.88; font-size:15px; }
-.date-box { text-align:right; min-width:210px; }
-.date-box span { display:block; font-size:12px; opacity:.75; margin-bottom:5px; text-transform:uppercase; letter-spacing:.07em; }
-.date-box strong { font-size:16px; color:#FFFFFF; }
-.kpi-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-bottom:18px; }
-.card { background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:0 8px 24px rgba(12,46,101,.06); }
-.kpi { padding:18px; }
-.kpi p { margin:0 0 10px; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
-.kpi h2 { margin:0; font-size:34px; line-height:1; color:var(--turra-green); }
-.kpi small { color:var(--muted); display:block; margin-top:8px; font-size:12px; }
-.grid-2 { display:grid; grid-template-columns:1.35fr .9fr; gap:18px; margin-bottom:18px; }
-.grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-bottom:18px; }
-.grid-equal { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
-.section { padding:22px; }
-.section-head { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:18px; }
-h3 { margin:0; font-size:18px; color:var(--turra-green); }
-.section-head span { font-size:12px; color:var(--muted); }
-table { width:100%; border-collapse:collapse; }
-th { text-align:left; font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:10px; border-bottom:1px solid var(--line); }
-td { padding:12px 10px; border-bottom:1px solid var(--line); font-size:14px; }
-.total-row td { font-weight:700; background:#F8FAFC; }
-.progress-cell { display:flex; align-items:center; gap:10px; }
-.mini-track { height:9px; background:#E8EDF3; border-radius:999px; flex:1; min-width:80px; overflow:hidden; }
-.mini-fill { height:100%; background:#016948; border-radius:999px; }
-.bar-row { margin-bottom:13px; }
-.bar-meta { display:flex; justify-content:space-between; gap:10px; font-size:13px; margin-bottom:6px; }
-.bar-meta strong { color:var(--turra-green); }
-.bar-track { height:10px; background:#E8EDF3; border-radius:999px; overflow:hidden; }
-.bar-fill { height:100%; border-radius:999px; }
-.donut-wrap { display:flex; gap:22px; align-items:center; }
-.donut { width:140px; height:140px; border-radius:50%; position:relative; flex:0 0 auto; }
-.donut::after { content:""; position:absolute; inset:30px; background:white; border-radius:50%; box-shadow:inset 0 0 0 1px var(--line); }
-.legend { flex:1; display:grid; gap:10px; }
-.legend-item { display:grid; grid-template-columns:12px 1fr auto; align-items:center; gap:9px; font-size:13px; }
-.legend-item span { width:12px; height:12px; border-radius:3px; }
-.legend-item div { color:var(--muted); }
-.legend-item strong { color:var(--ink); }
-.checks { display:grid; gap:12px; }
-.check-row { display:grid; grid-template-columns:160px 1fr 42px; gap:12px; align-items:center; font-size:13px; }
-.vbar-grid { display:flex; align-items:flex-end; justify-content:space-between; gap:10px; min-height:200px; padding-top:8px; }
-.vbar { flex:1; text-align:center; display:flex; flex-direction:column; align-items:center; gap:7px; }
-.vbar-wrap { height:145px; width:100%; max-width:44px; background:#E8EDF3; border-radius:10px 10px 4px 4px; display:flex; align-items:flex-end; overflow:hidden; }
-.vbar-fill { width:100%; background:#016948; border-radius:10px 10px 4px 4px; }
-.vbar strong { color:var(--turra-green); font-size:13px; }
-.vbar span { color:var(--muted); font-size:11px; }
-.role-table td:last-child, .role-table th:last-child { text-align:right; }
-.footer-note { color:var(--muted); font-size:12px; margin-top:14px; line-height:1.5; }
-@media print { body { background:white; } .page { max-width:none; padding:12px; } .card, .header { box-shadow:none; } }
-@media (max-width: 1000px) {
-  /* 1. Stack the layout grids vertically instead of side-by-side */
-  .grid-2, .grid-3, .grid-equal { 
-    grid-template-columns: 1fr !important; 
-    gap: 18px;
-  }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Turra Recruitment Dashboard</title>
+  <style>
+    :root {
+      --turra-green:#016948;
+      --turra-gold:#C49A2E;
+      --turra-grey:#ecece5;
+      --green-mid:#4a9b78;
+      --green-light:#8fbeaa;
+      --ink:#172033;
+      --muted:#687386;
+      --line:#E6EAF0;
+      --card:#FFFFFF;
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--turra-grey); color:var(--ink); }
+    .page { max-width:1280px; margin:0 auto; padding:28px; }
+    .header { background:var(--turra-green); color:white; border-radius:18px; padding:28px 32px; display:flex; justify-content:space-between; gap:24px; align-items:flex-end; margin-bottom:22px; }
+    .brand-small { font-size:13px; letter-spacing:.08em; text-transform:uppercase; opacity:.82; margin-bottom:8px; }
+    h1 { margin:0; font-size:30px; line-height:1.15; font-weight:700; }
+    .subtitle { margin:8px 0 0; opacity:.88; font-size:15px; }
+    .date-box { text-align:right; min-width:210px; }
+    .date-box span { display:block; font-size:12px; opacity:.75; margin-bottom:5px; text-transform:uppercase; letter-spacing:.07em; }
+    .date-box strong { font-size:16px; color:#FFFFFF; }
+    .kpi-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:14px; margin-bottom:18px; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:16px; box-shadow:0 8px 24px rgba(12,46,101,.06); }
+    .kpi { padding:18px; }
+    .kpi p { margin:0 0 10px; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em; }
+    .kpi h2 { margin:0; font-size:34px; line-height:1; color:var(--turra-green); }
+    .kpi small { color:var(--muted); display:block; margin-top:8px; font-size:12px; }
+    .grid-2 { display:grid; grid-template-columns:1.35fr .9fr; gap:18px; margin-bottom:18px; }
+    .grid-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-bottom:18px; }
+    .grid-equal { display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-bottom:18px; }
+    .section { padding:22px; }
+    .section-head { display:flex; justify-content:space-between; align-items:baseline; gap:16px; margin-bottom:18px; }
+    h3 { margin:0; font-size:18px; color:var(--turra-green); }
+    .section-head span { font-size:12px; color:var(--muted); }
+    table { width:100%; border-collapse:collapse; }
+    th { text-align:left; font-size:11px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.04em; padding:10px; border-bottom:1px solid var(--line); }
+    td { padding:12px 10px; border-bottom:1px solid var(--line); font-size:14px; }
+    .total-row td { font-weight:700; background:#F8FAFC; }
+    .progress-cell { display:flex; align-items:center; gap:10px; }
+    .mini-track { height:9px; background:#E8EDF3; border-radius:999px; flex:1; min-width:80px; overflow:hidden; }
+    .mini-fill { height:100%; background:#016948; border-radius:999px; }
+    .bar-row { margin-bottom:13px; }
+    .bar-meta { display:flex; justify-content:space-between; gap:10px; font-size:13px; margin-bottom:6px; }
+    .bar-meta strong { color:var(--turra-green); }
+    .bar-track { height:10px; background:#E8EDF3; border-radius:999px; overflow:hidden; }
+    .bar-fill { height:100%; border-radius:999px; }
+    .donut-wrap { display:flex; gap:22px; align-items:center; }
+    .donut { width:140px; height:140px; border-radius:50%; position:relative; flex:0 0 auto; }
+    .donut::after { content:""; position:absolute; inset:30px; background:white; border-radius:50%; box-shadow:inset 0 0 0 1px var(--line); }
+    .legend { flex:1; display:grid; gap:10px; }
+    .legend-item { display:grid; grid-template-columns:12px 1fr auto; align-items:center; gap:9px; font-size:13px; }
+    .legend-item span { width:12px; height:12px; border-radius:3px; }
+    .legend-item div { color:var(--muted); }
+    .legend-item strong { color:var(--ink); }
+    .checks { display:grid; gap:12px; }
+    .check-row { display:grid; grid-template-columns:160px 1fr 42px; gap:12px; align-items:center; font-size:13px; }
+    .vbar-grid { display:flex; align-items:flex-end; justify-content:space-between; gap:10px; min-height:200px; padding-top:8px; }
+    .vbar { flex:1; text-align:center; display:flex; flex-direction:column; align-items:center; gap:7px; }
+    .vbar-wrap { height:145px; width:100%; max-width:44px; background:#E8EDF3; border-radius:10px 10px 4px 4px; display:flex; align-items:flex-end; overflow:hidden; }
+    .vbar-fill { width:100%; background:#016948; border-radius:10px 10px 4px 4px; }
+    .vbar strong { color:var(--turra-green); font-size:13px; }
+    .vbar span { color:var(--muted); font-size:11px; }
+    .role-table td:last-child, .role-table th:last-child { text-align:right; }
+    .footer-note { color:var(--muted); font-size:12px; margin-top:14px; line-height:1.5; }
 
-  /* 2. Fix the 6 KPI cards into a clean 2-column grid layout */
-  .kpi-grid { 
-    grid-template-columns: repeat(2, 1fr) !important; 
-    gap: 12px;
-  }
+    @media print {
+      body { background:white; }
+      .page { max-width:none; padding:12px; }
+      .card, .header { box-shadow:none; }
+    }
 
-  /* 3. Wrap tables in a scrollable container so they don't break the page boundary */
-  .card.section {
-    overflow-x: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  table {
-    min-width: 500px; /* Forces the table to stay readable while scrolling horizontally */
-  }
-
-  /* 4. Fix the header alignment for mobile screens */
-  .header { 
-    align-items: flex-start !important; 
-    flex-direction: column !important; 
-    gap: 16px;
-  } 
-  .date-box { 
-    text-align: left !important; 
-    min-width: auto;
-  } 
-}
+    @media (max-width: 1000px) {
+      /* 1. Stack the layout grids vertically instead of side-by-side */
+      .grid-2, .grid-3, .grid-equal { 
+        grid-template-columns: 1fr !important; 
+        gap: 18px;
+      }
+      /* 2. Fix the 6 KPI cards into a clean 2-column grid layout */
+      .kpi-grid { 
+        grid-template-columns: repeat(2, 1fr) !important; 
+        gap: 12px;
+      }
+      /* 3. Wrap tables in a scrollable container so they don't break the page boundary */
+      .card.section {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch;
+      }
+      table {
+        min-width: 500px; /* Forces the table to stay readable while scrolling horizontally */
+      }
+      /* 4. Fix the header alignment for mobile screens */
+      .header { 
+        align-items: flex-start !important; 
+        flex-direction: column !important; 
+        gap: 16px;
+      } 
+      .date-box { 
+        text-align: left !important; 
+        min-width: auto;
+      } 
+    }
+  </style>
 </head>
 <body>
-<main class="page">
-
-  <section class="header">
-    <div>
-      <div class="brand-small">Turra Holdings Limited</div>
-      <h1>Recruitment Dashboard</h1>
-      <p class="subtitle">Candidate mobilisation, onboarding, and transition progress summary</p>
-    </div>
-    <div class="date-box"><span>Data as at</span><strong>26 May 2026</strong></div>
-  </section>
-
-  <section class="kpi-grid">
-    <div class="card kpi"><p>Total Candidates</p><h2>96</h2><small>Tracked for GMC contract</small></div>
-    <div class="card kpi"><p>Approved</p><h2>93</h2><small>97% of candidates</small></div>
-    <div class="card kpi"><p>Offers Accepted</p><h2>87</h2><small>91% of candidates</small></div>
-    <div class="card kpi"><p>Pending Offer</p><h2>8</h2><small>Awaiting offer or acceptance</small></div>
-    <div class="card kpi"><p>Ready to Mobilise</p><h2>4</h2><small>Cleared for mobilisation</small></div>
-    <div class="card kpi"><p>Mobilised</p><h2>15</h2><small>16% completed</small></div>
-  </section>
-
-  <section class="grid-2">
-    <div class="card section">
-      <div class="section-head"><h3>Transition Progress by Site</h3><span>Requested vs approved vs contracted</span></div>
-      <table>
-        <thead><tr><th>Site Location</th><th>Requested</th><th>Approved</th><th>Contracted</th><th>Progress</th></tr></thead>
-        <tbody>
-          <tr><td>HGCP</td><td>25</td><td>24</td><td>10</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:40%"></div></div><span>40%</span></div></td></tr>
-          <tr><td>LNGP</td><td>68</td><td>59</td><td>35</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:51%"></div></div><span>51%</span></div></td></tr>
-          <tr><td>LNGP Supply Chain</td><td>11</td><td>10</td><td>0</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:0%"></div></div><span>0%</span></div></td></tr>
-          <tr class="total-row"><td>Total</td><td>104</td><td>93</td><td>45</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:43%"></div></div><span>43%</span></div></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card section">
-      <div class="section-head"><h3>Estimated Mobilisation Timing</h3><span>Candidate count by month</span></div>
-      <div class="vbar-grid">
-        <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:2.8%"></div></div><strong>1</strong><span>Jan</span></div>
-        <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:8.3%"></div></div><strong>3</strong><span>Feb</span></div>
-        <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:5.6%"></div></div><strong>2</strong><span>Mar</span></div>
-        <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:5.6%"></div></div><strong>2</strong><span>Apr</span></div>
-        <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:25%"></div></div><strong>9</strong><span>May</span></div>
-        <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:100%"></div></div><strong>36</strong><span>Jun</span></div>
-        <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:50%"></div></div><strong>18</strong><span>Jul</span></div>
-        <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:2.8%"></div></div><strong>1</strong><span>Aug</span></div>
+  <main class="page">
+    <section class="header">
+      <div>
+        <div class="brand-small">Turra Holdings Limited</div>
+        <h1>Recruitment Dashboard</h1>
+        <p class="subtitle">Candidate mobilisation, onboarding, and transition progress summary</p>
       </div>
-    </div>
-  </section>
-
-  <section class="grid-2">
-    <div class="card section">
-      <div class="section-head"><h3>Mobilisation Status</h3><span>Current candidate status</span></div>
-      <div class="bar-row"><div class="bar-meta"><span>Commence KPA &amp; OL Process</span><strong>26</strong></div><div class="bar-track"><div class="bar-fill" style="width:100%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Pending Medical Appt</span><strong>23</strong></div><div class="bar-track"><div class="bar-fill" style="width:88%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Mobilised</span><strong>15</strong></div><div class="bar-track"><div class="bar-fill" style="width:57%; background:#C49A2E;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Pending Start Date</span><strong>11</strong></div><div class="bar-track"><div class="bar-fill" style="width:42%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Pending Medical Result</span><strong>6</strong></div><div class="bar-track"><div class="bar-fill" style="width:23%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Pending Signed LOO, Police &amp; Medical</span><strong>6</strong></div><div class="bar-track"><div class="bar-fill" style="width:23%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Ready to Mobilise</span><strong>4</strong></div><div class="bar-track"><div class="bar-fill" style="width:15%; background:#4a9b78;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Pending Emp'ee Action Police &amp; PEMS</span><strong>3</strong></div><div class="bar-track"><div class="bar-fill" style="width:11%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Contract Issued</span><strong>1</strong></div><div class="bar-track"><div class="bar-fill" style="width:4%; background:#4a9b78;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Pending LOO</span><strong>1</strong></div><div class="bar-track"><div class="bar-fill" style="width:4%; background:#016948;"></div></div></div>
-    </div>
-    <div class="card section">
-      <div class="section-head"><h3>Onboarding Status</h3><span>Progress through onboarding</span></div>
-      <div class="bar-row"><div class="bar-meta"><span>In Progress</span><strong>47</strong></div><div class="bar-track"><div class="bar-fill" style="width:100%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Commenced</span><strong>27</strong></div><div class="bar-track"><div class="bar-fill" style="width:57%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Completed</span><strong>14</strong></div><div class="bar-track"><div class="bar-fill" style="width:30%; background:#C49A2E;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Pending Offer Accept.</span><strong>7</strong></div><div class="bar-track"><div class="bar-fill" style="width:15%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Employee Collating</span><strong>1</strong></div><div class="bar-track"><div class="bar-fill" style="width:2%; background:#016948;"></div></div></div>
-    </div>
-  </section>
-
-  <section class="grid-3">
-    <div class="card section">
-      <div class="section-head"><h3>Site Location</h3><span>Candidate allocation</span></div>
-      <div class="donut-wrap">
-        <div class="donut" style="background:conic-gradient(#016948 0deg 228.4deg, #4a9b78 228.4deg 322.5deg, #8fbeaa 322.5deg 360deg);"></div>
-        <div class="legend">
-          <div class="legend-item"><span style="background:#016948"></span><div>LNGP</div><strong>61</strong></div>
-          <div class="legend-item"><span style="background:#4a9b78"></span><div>HGCP</div><strong>25</strong></div>
-          <div class="legend-item"><span style="background:#8fbeaa"></span><div>LNGP SC</div><strong>10</strong></div>
+      <div class="date-box"><span>Data as at</span><strong>26 May 2026</strong></div>
+    </section>
+    <section class="kpi-grid">
+      <div class="card kpi"><p>Total Candidates</p><h2>96</h2><small>Tracked for GMC contract</small></div>
+      <div class="card kpi"><p>Approved</p><h2>93</h2><small>97% of candidates</small></div>
+      <div class="card kpi"><p>Offers Accepted</p><h2>87</h2><small>91% of candidates</small></div>
+      <div class="card kpi"><p>Pending Offer</p><h2>8</h2><small>Awaiting offer or acceptance</small></div>
+      <div class="card kpi"><p>Ready to Mobilise</p><h2>4</h2><small>Cleared for mobilisation</small></div>
+      <div class="card kpi"><p>Mobilised</p><h2>15</h2><small>16% completed</small></div>
+    </section>
+    <section class="grid-2">
+      <div class="card section">
+        <div class="section-head"><h3>Transition Progress by Site</h3><span>Requested vs approved vs contracted</span></div>
+        <table>
+          <thead><tr><th>Site Location</th><th>Requested</th><th>Approved</th><th>Contracted</th><th>Progress</th></tr></thead>
+          <tbody>
+            <tr><td>HGCP</td><td>25</td><td>24</td><td>10</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:40%"></div></div><span>40%</span></div></td></tr>
+            <tr><td>LNGP</td><td>68</td><td>59</td><td>35</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:51%"></div></div><span>51%</span></div></td></tr>
+            <tr><td>LNGP Supply Chain</td><td>11</td><td>10</td><td>0</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:0%"></div></div><span>0%</span></div></td></tr>
+            <tr class="total-row"><td>Total</td><td>104</td><td>93</td><td>45</td><td><div class="progress-cell"><div class="mini-track"><div class="mini-fill" style="width:43%"></div></div><span>43%</span></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card section">
+        <div class="section-head"><h3>Estimated Mobilisation Timing</h3><span>Candidate count by month</span></div>
+        <div class="vbar-grid">
+          <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:2.8%"></div></div><strong>1</strong><span>Jan</span></div>
+          <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:8.3%"></div></div><strong>3</strong><span>Feb</span></div>
+          <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:5.6%"></div></div><strong>2</strong><span>Mar</span></div>
+          <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:5.6%"></div></div><strong>2</strong><span>Apr</span></div>
+          <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:25%"></div></div><strong>9</strong><span>May</span></div>
+          <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:100%"></div></div><strong>36</strong><span>Jun</span></div>
+          <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:50%"></div></div><strong>18</strong><span>Jul</span></div>
+          <div class="vbar"><div class="vbar-wrap"><div class="vbar-fill" style="height:2.8%"></div></div><strong>1</strong><span>Aug</span></div>
         </div>
       </div>
-    </div>
-    <div class="card section">
-      <div class="section-head"><h3>Nationality Split</h3><span>Candidate profile</span></div>
-      <div class="donut-wrap">
-        <div class="donut" style="background:conic-gradient(#016948 0deg 277.5deg, #C49A2E 277.5deg 360deg);"></div>
-        <div class="legend">
-          <div class="legend-item"><span style="background:#016948"></span><div>NAT</div><strong>74</strong></div>
-          <div class="legend-item"><span style="background:#C49A2E"></span><div>Expat</div><strong>22</strong></div>
+    </section>
+    <section class="grid-2">
+      <div class="card section">
+        <div class="section-head"><h3>Mobilisation Status</h3><span>Current candidate status</span></div>
+        <div class="bar-row"><div class="bar-meta"><span>Commence KPA &amp; OL Process</span><strong>26</strong></div><div class="bar-track"><div class="bar-fill" style="width:100%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Pending Medical Appt</span><strong>23</strong></div><div class="bar-track"><div class="bar-fill" style="width:88%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Mobilised</span><strong>15</strong></div><div class="bar-track"><div class="bar-fill" style="width:57%; background:#C49A2E;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Pending Start Date</span><strong>11</strong></div><div class="bar-track"><div class="bar-fill" style="width:42%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Pending Medical Result</span><strong>6</strong></div><div class="bar-track"><div class="bar-fill" style="width:23%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Pending Signed LOO, Police &amp; Medical</span><strong>6</strong></div><div class="bar-track"><div class="bar-fill" style="width:23%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Ready to Mobilise</span><strong>4</strong></div><div class="bar-track"><div class="bar-fill" style="width:15%; background:#4a9b78;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Pending Emp'ee Action Police &amp; PEMS</span><strong>3</strong></div><div class="bar-track"><div class="bar-fill" style="width:11%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Contract Issued</span><strong>1</strong></div><div class="bar-track"><div class="bar-fill" style="width:4%; background:#4a9b78;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Pending LOO</span><strong>1</strong></div><div class="bar-track"><div class="bar-fill" style="width:4%; background:#016948;"></div></div></div>
+      </div>
+      <div class="card section">
+        <div class="section-head"><h3>Onboarding Status</h3><span>Progress through onboarding</span></div>
+        <div class="bar-row"><div class="bar-meta"><span>In Progress</span><strong>47</strong></div><div class="bar-track"><div class="bar-fill" style="width:100%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Commenced</span><strong>27</strong></div><div class="bar-track"><div class="bar-fill" style="width:57%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Completed</span><strong>14</strong></div><div class="bar-track"><div class="bar-fill" style="width:30%; background:#C49A2E;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Pending Offer Accept.</span><strong>7</strong></div><div class="bar-track"><div class="bar-fill" style="width:15%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Employee Collating</span><strong>1</strong></div><div class="bar-track"><div class="bar-fill" style="width:2%; background:#016948;"></div></div></div>
+      </div>
+    </section>
+    <section class="grid-3">
+      <div class="card section">
+        <div class="section-head"><h3>Site Location</h3><span>Candidate allocation</span></div>
+        <div class="donut-wrap">
+          <div class="donut" style="background:conic-gradient(#016948 0deg 228.4deg, #4a9b78 228.4deg 322.5deg, #8fbeaa 322.5deg 360deg);"></div>
+          <div class="legend">
+            <div class="legend-item"><span style="background:#016948"></span><div>LNGP</div><strong>61</strong></div>
+            <div class="legend-item"><span style="background:#4a9b78"></span><div>HGCP</div><strong>25</strong></div>
+            <div class="legend-item"><span style="background:#8fbeaa"></span><div>LNGP SC</div><strong>10</strong></div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="card section">
-      <div class="section-head"><h3>Employer Source</h3><span>Candidate source grouping</span></div>
-      <div class="bar-row"><div class="bar-meta"><span>WOOD-Nat</span><strong>45</strong></div><div class="bar-track"><div class="bar-fill" style="width:100%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>WOOD-OCN</span><strong>21</strong></div><div class="bar-track"><div class="bar-fill" style="width:46.7%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>New Hire</span><strong>15</strong></div><div class="bar-track"><div class="bar-fill" style="width:33.3%; background:#4a9b78;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>LABA</span><strong>15</strong></div><div class="bar-track"><div class="bar-fill" style="width:33.3%; background:#4a9b78;"></div></div></div>
-    </div>
-  </section>
-
-  <section class="grid-equal">
-    <div class="card section">
-      <div class="section-head"><h3>Pre-Employment Checks Completed</h3><span>Completed checks by category</span></div>
-      <div class="checks">
-        <div class="check-row"><div>Police Clearance</div><div class="bar-track"><div class="bar-fill" style="width:32.3%; background:#016948"></div></div><strong>31</strong></div>
-        <div class="check-row"><div>EMPNG PEMS</div><div class="bar-track"><div class="bar-fill" style="width:61.5%; background:#016948"></div></div><strong>59</strong></div>
-        <div class="check-row"><div>Quest DA Test</div><div class="bar-track"><div class="bar-fill" style="width:61.5%; background:#016948"></div></div><strong>59</strong></div>
-        <div class="check-row"><div>KPA &amp; OL Profiles</div><div class="bar-track"><div class="bar-fill" style="width:14.6%; background:#C49A2E"></div></div><strong>14</strong></div>
+      <div class="card section">
+        <div class="section-head"><h3>Nationality Split</h3><span>Candidate profile</span></div>
+        <div class="donut-wrap">
+          <div class="donut" style="background:conic-gradient(#016948 0deg 277.5deg, #C49A2E 277.5deg 360deg);"></div>
+          <div class="legend">
+            <div class="legend-item"><span style="background:#016948"></span><div>NAT</div><strong>74</strong></div>
+            <div class="legend-item"><span style="background:#C49A2E"></span><div>Expat</div><strong>22</strong></div>
+          </div>
+        </div>
       </div>
-      <p class="footer-note">Counts reflect completed items recorded in the recruitment tracker.</p>
-    </div>
-    <div class="card section">
-      <div class="section-head"><h3>Offer Status</h3><span>Current offer position</span></div>
-      <div class="bar-row"><div class="bar-meta"><span>Accepted</span><strong>87</strong></div><div class="bar-track"><div class="bar-fill" style="width:100%; background:#016948;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Pending Offer</span><strong>8</strong></div><div class="bar-track"><div class="bar-fill" style="width:9.2%; background:#4a9b78;"></div></div></div>
-      <div class="bar-row"><div class="bar-meta"><span>Pending Acceptance</span><strong>1</strong></div><div class="bar-track"><div class="bar-fill" style="width:1.1%; background:#4a9b78;"></div></div></div>
-    </div>
-  </section>
-
-  <section class="grid-equal">
-    <div class="card section">
-      <div class="section-head"><h3>Top Roles by Candidate Volume</h3><span>Highest volume positions</span></div>
-      <table class="role-table">
-        <thead><tr><th>Position Title</th><th>Candidates</th></tr></thead>
-        <tbody>
-          <tr><td>Heavy Equipment / Crane Operator</td><td>10</td></tr>
-          <tr><td>Insulator/Lagger Technician</td><td>7</td></tr>
-          <tr><td>Scaffolder Level 3</td><td>6</td></tr>
-          <tr><td>Multi-skilled Laborer</td><td>6</td></tr>
-          <tr><td>Scaffolder/Rigger Lead</td><td>6</td></tr>
-          <tr><td>Maintenance Administrator</td><td>5</td></tr>
-          <tr><td>Rigger Level 3</td><td>5</td></tr>
-          <tr><td>HVAC Technician Level 2</td><td>5</td></tr>
-          <tr><td>Electrical Technician Level 3</td><td>5</td></tr>
-          <tr><td>HVAC Technician Level 3</td><td>5</td></tr>
-          <tr><td>Preservation Technician</td><td>4</td></tr>
-          <tr><td>Vehicle Maintenance (LV &amp; HE)</td><td>3</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="card section">
-      <div class="section-head"><h3>Risk &amp; Workforce Profile</h3><span>Role requirements and profile indicators</span></div>
-      <table class="role-table">
-        <thead><tr><th>Indicator</th><th>Count</th></tr></thead>
-        <tbody>
-          <tr><td>Higher Exposure Positions</td><td>50</td></tr>
-          <tr><td>Safety Sensitive Positions</td><td>58</td></tr>
-          <tr><td>Incumbent Candidates</td><td>84</td></tr>
-          <tr><td>Written Offer Provided</td><td>88</td></tr>
-          <tr><td>Successful Interviews</td><td>91</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-</main>
+      <div class="card section">
+        <div class="section-head"><h3>Employer Source</h3><span>Candidate source grouping</span></div>
+        <div class="bar-row"><div class="bar-meta"><span>WOOD-Nat</span><strong>45</strong></div><div class="bar-track"><div class="bar-fill" style="width:100%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>WOOD-OCN</span><strong>21</strong></div><div class="bar-track"><div class="bar-fill" style="width:46.7%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>New Hire</span><strong>15</strong></div><div class="bar-track"><div class="bar-fill" style="width:33.3%; background:#4a9b78;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>LABA</span><strong>15</strong></div><div class="bar-track"><div class="bar-fill" style="width:33.3%; background:#4a9b78;"></div></div></div>
+      </div>
+    </section>
+    <section class="grid-equal">
+      <div class="card section">
+        <div class="section-head"><h3>Pre-Employment Checks Completed</h3><span>Completed checks by category</span></div>
+        <div class="checks">
+          <div class="check-row"><div>Police Clearance</div><div class="bar-track"><div class="bar-fill" style="width:32.3%; background:#016948"></div></div><strong>31</strong></div>
+          <div class="check-row"><div>EMPNG PEMS</div><div class="bar-track"><div class="bar-fill" style="width:61.5%; background:#016948"></div></div><strong>59</strong></div>
+          <div class="check-row"><div>Quest DA Test</div><div class="bar-track"><div class="bar-fill" style="width:61.5%; background:#016948"></div></div><strong>59</strong></div>
+          <div class="check-row"><div>KPA &amp; OL Profiles</div><div class="bar-track"><div class="bar-fill" style="width:14.6%; background:#C49A2E"></div></div><strong>14</strong></div>
+        </div>
+        <p class="footer-note">Counts reflect completed items recorded in the recruitment tracker.</p>
+      </div>
+      <div class="card section">
+        <div class="section-head"><h3>Offer Status</h3><span>Current offer position</span></div>
+        <div class="bar-row"><div class="bar-meta"><span>Accepted</span><strong>87</strong></div><div class="bar-track"><div class="bar-fill" style="width:100%; background:#016948;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Pending Offer</span><strong>8</strong></div><div class="bar-track"><div class="bar-fill" style="width:9.2%; background:#4a9b78;"></div></div></div>
+        <div class="bar-row"><div class="bar-meta"><span>Pending Acceptance</span><strong>1</strong></div><div class="bar-track"><div class="bar-fill" style="width:1.1%; background:#4a9b78;"></div></div></div>
+      </div>
+    </section>
+    <section class="grid-equal">
+      <div class="card section">
+        <div class="section-head"><h3>Top Roles by Candidate Volume</h3><span>Highest volume positions</span></div>
+        <table class="role-table">
+          <thead><tr><th>Position Title</th><th>Candidates</th></tr></thead>
+          <tbody>
+            <tr><td>Heavy Equipment / Crane Operator</td><td>10</td></tr>
+            <tr><td>Insulator/Lagger Technician</td><td>7</td></tr>
+            <tr><td>Scaffolder Level 3</td><td>6</td></tr>
+            <tr><td>Multi-skilled Laborer</td><td>6</td></tr>
+            <tr><td>Scaffolder/Rigger Lead</td><td>6</td></tr>
+            <tr><td>Maintenance Administrator</td><td>5</td></tr>
+            <tr><td>Rigger Level 3</td><td>5</td></tr>
+            <tr><td>HVAC Technician Level 2</td><td>5</td></tr>
+            <tr><td>Electrical Technician Level 3</td><td>5</td></tr>
+            <tr><td>HVAC Technician Level 3</td><td>5</td></tr>
+            <tr><td>Preservation Technician</td><td>4</td></tr>
+            <tr><td>Vehicle Maintenance (LV &amp; HE)</td><td>3</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card section">
+        <div class="section-head"><h3>Risk &amp; Workforce Profile</h3><span>Role requirements and profile indicators</span></div>
+        <table class="role-table">
+          <thead><tr><th>Indicator</th><th>Count</th></tr></thead>
+          <tbody>
+            <tr><td>Higher Exposure Positions</td><td>50</td></tr>
+            <tr><td>Safety Sensitive Positions</td><td>58</td></tr>
+            <tr><td>Incumbent Candidates</td><td>84</td></tr>
+            <tr><td>Written Offer Provided</td><td>88</td></tr>
+            <tr><td>Successful Interviews</td><td>91</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
 </body>
 </html>

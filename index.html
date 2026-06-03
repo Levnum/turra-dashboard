@@ -63,8 +63,40 @@ td { padding:12px 10px; border-bottom:1px solid var(--line); font-size:14px; }
 .role-table td:last-child, .role-table th:last-child { text-align:right; }
 .footer-note { color:var(--muted); font-size:12px; margin-top:14px; line-height:1.5; }
 @media print { body { background:white; } .page { max-width:none; padding:12px; } .card, .header { box-shadow:none; } }
-@media (max-width:1000px) { .kpi-grid { grid-template-columns:repeat(3,1fr); } .grid-2,.grid-3,.grid-equal { grid-template-columns:1fr; } .header { align-items:flex-start; flex-direction:column; } .date-box { text-align:left; } }
-</style>
+@media (max-width: 1000px) {
+  /* 1. Stack the layout grids vertically instead of side-by-side */
+  .grid-2, .grid-3, .grid-equal { 
+    grid-template-columns: 1fr !important; 
+    gap: 18px;
+  }
+
+  /* 2. Fix the 6 KPI cards into a clean 2-column grid layout */
+  .kpi-grid { 
+    grid-template-columns: repeat(2, 1fr) !important; 
+    gap: 12px;
+  }
+
+  /* 3. Wrap tables in a scrollable container so they don't break the page boundary */
+  .card.section {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  table {
+    min-width: 500px; /* Forces the table to stay readable while scrolling horizontally */
+  }
+
+  /* 4. Fix the header alignment for mobile screens */
+  .header { 
+    align-items: flex-start !important; 
+    flex-direction: column !important; 
+    gap: 16px;
+  } 
+  .date-box { 
+    text-align: left !important; 
+    min-width: auto;
+  } 
+}
 </head>
 <body>
 <main class="page">
